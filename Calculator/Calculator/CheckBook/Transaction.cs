@@ -15,6 +15,14 @@ namespace Calculator.CheckBook
             get { return _VM; }
             set { _VM = value; OnPropertyChanged(); }
         }
+
+        public IEnumerable<Transaction> SimilarTransactions {
+            get {
+                return from t in VM.Transactions
+                       where t.Payee == this.Payee
+                       select t;
+            }
+        }
         
         private DateTime _Date;
         public DateTime Date
@@ -56,6 +64,19 @@ namespace Calculator.CheckBook
 
     public class CheckBookVM: BaseVM
     {
+        public CheckBookVM()
+        {
+
+        }
+
+        private int _RowsPerPage = 5;
+        private int _CurrentPage = 1;
+        public int CurrentPage
+        {
+            get { return _CurrentPage; }
+            set { _CurrentPage = value; OnPropertyChanged(); OnPropertyChanged("CurrentTransactions"); }
+        }
+
         private ObservableCollection<Transaction> _Transactions;
         public ObservableCollection<Transaction> Transactions
         {
@@ -67,7 +88,30 @@ namespace Calculator.CheckBook
         {
             get { return Transactions.Select(t=> t.Account).Distinct(); }
         }
-        
+
+        public IEnumerable<Transaction> CurrentTransactions
+        {
+            get { return Transactions.Skip((_CurrentPage - 1) * _RowsPerPage).Take(_RowsPerPage);  }
+        }
+
+        public DelegateCommand MoveNext
+        {
+            get { return new DelegateCommand {
+                ExecuteFunction = _ => CurrentPage ++,
+                CanExecuteFunction = _ => CurrentPage * _RowsPerPage < Transactions.Count
+                }; 
+            }
+        }
+
+        public DelegateCommand NewTransaction
+        {
+            get { return new DelegateCommand {
+                ExecuteFunction = _ => {
+                    Transactions.Add(new Transaction { });
+                    CurrentPage = Transactions.Count / _RowsPerPage + 1;
+                }
+            }; }
+        }
 
         public void Fill()
         {

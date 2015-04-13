@@ -34,7 +34,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,6 +73,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CalculatorVM.cs" />
+    <Compile Include="CheckBook\CbDb.cs" />
     <Compile Include="CheckBook\CheckBookWindow.xaml.cs">
       <DependentUpon>CheckBookWindow.xaml</DependentUpon>
     </Compile>
@@ -76,6 +84,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201504131311572_Start.cs" />
+    <Compile Include="Migrations\201504131311572_Start.Designer.cs">
+      <DependentUpon>201504131311572_Start.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -90,10 +103,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201504131311572_Start.resx">
+      <DependentUpon>201504131311572_Start.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\Calculator.CheckBook.CheckBookVM.datasource" />
     <None Include="Properties\DataSources\Calculator.CheckBook.Transaction.datasource" />
     <None Include="Properties\Settings.settings">

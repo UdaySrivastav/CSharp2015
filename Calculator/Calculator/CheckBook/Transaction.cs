@@ -11,14 +11,8 @@ namespace Calculator.CheckBook
     {
         public int Id { get; set; }
 
-        private CheckBookVM _VM;
-        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
-        public CheckBookVM VM
-        {
-            get { return _VM; }
-            set { _VM = value; OnPropertyChanged(); }
-        }
 
+        /*
         public IEnumerable<Transaction> SimilarTransactions {
             get {
                 return from t in VM.Transactions
@@ -26,7 +20,7 @@ namespace Calculator.CheckBook
                        select t;
             }
         }
-        
+        */
         private DateTime _Date;
         public DateTime Date
         {
@@ -47,7 +41,7 @@ namespace Calculator.CheckBook
         public virtual Account Account
         {
             get { return _Account; }
-            set { _Account = value; OnPropertyChanged(); if (VM != null) VM.OnPropertyChanged("Accounts"); }
+            set { _Account = value; OnPropertyChanged();  }
         }
 
         private double _Amount;
@@ -81,8 +75,9 @@ namespace Calculator.CheckBook
     {
         public CheckBookVM()
         {
-            var db = new CbDb();
         }
+
+        CbDb _Db = new CbDb();
 
         private int _RowsPerPage = 5;
         private int _CurrentPage = 1;
@@ -99,9 +94,9 @@ namespace Calculator.CheckBook
             set { _Transactions = value; OnPropertyChanged(); OnPropertyChanged("Accounts"); }
         }
 
-        public IEnumerable<string> Accounts
+        public IEnumerable<Account> Accounts
         {
-            get { return Transactions.Select(t=> t.Account.Name).Distinct(); }
+            get { return _Db.Accounts.Local; }
         }
 
         public IEnumerable<Transaction> CurrentTransactions
@@ -118,6 +113,14 @@ namespace Calculator.CheckBook
             }
         }
 
+        public DelegateCommand Save
+        {
+            get { return new DelegateCommand {
+                ExecuteFunction = _ => _Db.SaveChanges(),
+                CanExecuteFunction = _ => _Db.ChangeTracker.HasChanges()
+            }; }
+        }
+
         public DelegateCommand NewTransaction
         {
             get { return new DelegateCommand {
@@ -130,20 +133,10 @@ namespace Calculator.CheckBook
 
         public void Fill()
         {
-            Transactions = new ObservableCollection<Transaction>( new[] {
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-1), Account= new Account{ Name="Checking" }, Payee="Moshe", Amount=30, Tag="Food" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-3), Account= new Account{ Name="Checking" }, Payee="Tim", Amount=130, Tag="Auto" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-4), Account= new Account{ Name="Checking" }, Payee="Moshe", Amount=35, Tag="Food" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-5), Account= new Account{ Name="Checking" }, Payee="Bracha", Amount=35, Tag="Food" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-6), Account= new Account{ Name="Checking" }, Payee="Tim", Amount=20, Tag="Auto" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-1), Account= new Account{ Name="Credit" }, Payee="Moshe", Amount=30, Tag="Food" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-2), Account= new Account{ Name="Credit" }, Payee="Bracha", Amount=30.5, Tag="Food" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-3), Account= new Account{ Name="Credit" }, Payee="Tim", Amount=130, Tag="Auto" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-4), Account= new Account{ Name="Credit" }, Payee="Moshe", Amount=35, Tag="Food" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-5), Account= new Account{ Name="Credit" }, Payee="Bracha", Amount=35, Tag="Food" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-2), Account= new Account{ Name="Checking" }, Payee="Bracha", Amount=30.5, Tag="Food" },
-                new Transaction { VM=this, Date= DateTime.Now.AddDays(-6), Account= new Account{ Name="Credit" }, Payee="Tim", Amount=20, Tag="Auto" },
-            });
+            Transactions = _Db.Transactions.Local;
+            _Db.Accounts.ToList();
+            _Db.Transactions.ToList();
+            //new ObservableCollection<Transaction>();
         }
     }
 }

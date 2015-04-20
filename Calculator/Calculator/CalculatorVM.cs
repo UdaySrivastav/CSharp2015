@@ -40,7 +40,29 @@ namespace Calculator
                 }
                 return _Clear;
             }
-        } 
+        }
+
+        public DelegateCommand DisplayFactors
+        {
+            get
+            {
+                return new DelegateCommand {
+                    ExecuteFunction = x =>{
+                        var t = Task.Run(() => string.Join(",", GetFactors((int)Op.PreviousTotal).ToArray()));
+                        t.ContinueWith(t2 => System.Windows.MessageBox.Show(t2.Result));
+                        
+                        System.Windows.MessageBox.Show("Next");
+                    }
+                };
+            }
+        }
+
+        static IEnumerable<int> GetFactors(int n)
+        {
+            return from a in Enumerable.Range(1, n)
+                   where n % a == 0
+                   select a;
+        }
 
     }
 }

@@ -73,6 +73,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CheckBook\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,6 +89,9 @@
     <Compile Include="CheckBook\CbDb.cs" />
     <Compile Include="CheckBook\CheckBookWindow.xaml.cs">
       <DependentUpon>CheckBookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckBook\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CheckBook\Transaction.cs" />
     <Compile Include="MainWindow.xaml.cs">

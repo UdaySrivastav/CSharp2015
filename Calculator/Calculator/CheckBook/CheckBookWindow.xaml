@@ -7,7 +7,8 @@
     </Window.Resources>
     <Grid  >
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="41*"/>
+            <RowDefinition Height="234*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -16,11 +17,13 @@
             <ColumnDefinition Width="327*"/>
             <ColumnDefinition Width="280*"/>
         </Grid.ColumnDefinitions>
-        <GridSplitter Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Right" />
-        <GridSplitter Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Right" Grid.Column="1" />
-        <GridSplitter Height="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.ColumnSpan="4" />
+        <GridSplitter Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Right" Grid.RowSpan="2" />
+        <GridSplitter Width="5" VerticalAlignment="Stretch" HorizontalAlignment="Right" Grid.Column="1" Grid.RowSpan="2" />
+        <GridSplitter Height="5" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Grid.ColumnSpan="4" Grid.Row="1" />
 
-        <DataGrid x:Name="transactionsDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding CurrentTransactions}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,0,5,0">
+        <Image Height="50" Width="50" Source="{Binding Picture}" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="20" Margin="55,0,0,0" ></TextBlock>
+        <DataGrid x:Name="transactionsDataGrid" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding CurrentTransactions}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="0,0,5,0" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Account.Name}" Header="Account" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount}" Header="Amount" Width="SizeToHeader"/>
@@ -36,7 +39,7 @@
                 <DataGridTextColumn x:Name="tagColumn" Binding="{Binding Tag}" Header="Tag" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid DataContext="{Binding Transactions}"  Grid.Column="2" Margin="0,0,0,5"  >
+        <Grid DataContext="{Binding Transactions}"  Grid.Column="2" Margin="0,0,0,5" Grid.RowSpan="2"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition />
@@ -77,7 +80,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
-        <ListView  Grid.Column="1" ItemsSource="{Binding Transactions}" IsSynchronizedWithCurrentItem="True"  SelectionMode="Single">
+        <ListView  Grid.Column="1" ItemsSource="{Binding Transactions}" IsSynchronizedWithCurrentItem="True"  SelectionMode="Single" Grid.RowSpan="2">
             <ListView.ItemContainerStyle>
                 <Style>
                     <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
@@ -105,11 +108,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox Grid.Row="1" Text="{Binding CurrentPage}" Margin="111,0,146,0"></TextBox>
-        <Button Grid.Row="1" Command="{Binding MoveNext}" Margin="0,0,101,0" HorizontalAlignment="Right" Width="40" >&gt;</Button>
-        <Button Grid.Row="1" Command="{Binding NewTransaction}" Margin="0,0,56,0" HorizontalAlignment="Right" Width="40" >*</Button>
-        <Button Grid.Row="1" Grid.Column="2" Command="{Binding Save}" Margin="0,0,18,0" HorizontalAlignment="Right" Width="40" >Save</Button>
-        <Grid x:Name="grid1" Grid.Column="3" >
+        <TextBox Grid.Row="2" Text="{Binding CurrentPage}" Margin="111,0,146,0"></TextBox>
+        <Button Grid.Row="2" Command="{Binding MoveNext}" Margin="0,0,101,0" HorizontalAlignment="Right" Width="40" >&gt;</Button>
+        <Button Grid.Row="2" Command="{Binding NewTransaction}" Margin="0,0,56,0" HorizontalAlignment="Right" Width="40" >*</Button>
+        <Button Grid.Row="2" Grid.Column="2" Command="{Binding Save}" Margin="0,0,18,0" HorizontalAlignment="Right" Width="40" >Save</Button>
+        <Grid x:Name="grid1" Grid.Column="3" Grid.RowSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

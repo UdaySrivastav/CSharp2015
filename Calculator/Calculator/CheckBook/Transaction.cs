@@ -157,6 +157,28 @@ namespace Calculator.CheckBook
             get { return _CurrentRates; }
             set { _CurrentRates = value; OnPropertyChanged(); }
         }
+
+        private string _Name;
+
+        public string Name
+        {
+            get { return _Name; }
+            set { _Name = value; OnPropertyChanged(); }
+        }
+        private string _Email;
+
+        public string Email
+        {
+            get { return _Email; }
+            set { _Email = value; OnPropertyChanged(); }
+        }
+        private string _Picture;
+
+        public string Picture
+        {
+            get { return _Picture; }
+            set { _Picture = value; OnPropertyChanged(); }
+        }
         
 
         public async void Fill()
@@ -166,7 +188,16 @@ namespace Calculator.CheckBook
             _Db.Transactions.ToList();
             //new ObservableCollection<Transaction>();
 
+            var wnd = new LoginWindow();
+            var token = await wnd.Login();
+
             var http = new HttpClient();
+
+            dynamic me = Newtonsoft.Json.JsonConvert.DeserializeObject(await http.GetStringAsync("https://graph.facebook.com/me?access_token=" + token));
+
+            Name = me.name;
+            Picture = "https://graph.facebook.com/" + me.id + "/picture";
+
             var results = await http.GetAsync("http://openexchangerates.org/api/latest.json?app_id=2f23629162b444b580bc03970c41caad");
             var currencies = await results.Content.ReadAsAsync<ExchageRate>();
             CurrentRates = currencies.rates;
@@ -214,16 +245,16 @@ namespace Calculator.CheckBook
         public float AWG { get; set; }
         public float AZN { get; set; }
         public float BAM { get; set; }
-        public int BBD { get; set; }
+        public float BBD { get; set; }
         public float BDT { get; set; }
         public float BGN { get; set; }
         public float BHD { get; set; }
         public float BIF { get; set; }
-        public int BMD { get; set; }
+        public float BMD { get; set; }
         public float BND { get; set; }
         public float BOB { get; set; }
         public float BRL { get; set; }
-        public int BSD { get; set; }
+        public float BSD { get; set; }
         public float BTC { get; set; }
         public float BTN { get; set; }
         public float BWP { get; set; }
@@ -237,7 +268,7 @@ namespace Calculator.CheckBook
         public float CNY { get; set; }
         public float COP { get; set; }
         public float CRC { get; set; }
-        public int CUC { get; set; }
+        public float CUC { get; set; }
         public float CUP { get; set; }
         public float CVE { get; set; }
         public float CZK { get; set; }
@@ -299,7 +330,7 @@ namespace Calculator.CheckBook
         public float MGA { get; set; }
         public float MKD { get; set; }
         public float MMK { get; set; }
-        public int MNT { get; set; }
+        public float MNT { get; set; }
         public float MOP { get; set; }
         public float MRO { get; set; }
         public float MTL { get; set; }
@@ -316,7 +347,7 @@ namespace Calculator.CheckBook
         public float NPR { get; set; }
         public float NZD { get; set; }
         public float OMR { get; set; }
-        public int PAB { get; set; }
+        public float PAB { get; set; }
         public float PEN { get; set; }
         public float PGK { get; set; }
         public float PHP { get; set; }
@@ -338,7 +369,7 @@ namespace Calculator.CheckBook
         public float SLL { get; set; }
         public float SOS { get; set; }
         public float SRD { get; set; }
-        public int STD { get; set; }
+        public float STD { get; set; }
         public float SVC { get; set; }
         public float SYP { get; set; }
         public float SZL { get; set; }
@@ -352,8 +383,8 @@ namespace Calculator.CheckBook
         public float TWD { get; set; }
         public float TZS { get; set; }
         public float UAH { get; set; }
-        public int UGX { get; set; }
-        public int USD { get; set; }
+        public float UGX { get; set; }
+        public float USD { get; set; }
         public float UYU { get; set; }
         public float UZS { get; set; }
         public float VEF { get; set; }

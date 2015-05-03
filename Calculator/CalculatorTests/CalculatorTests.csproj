@@ -60,6 +60,10 @@
       <Project>{5a2193e2-2e08-400c-b55a-b3314716b30d}</Project>
       <Name>Calculator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{800bb604-1822-4e83-a7ac-09c7e44a1e9c}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

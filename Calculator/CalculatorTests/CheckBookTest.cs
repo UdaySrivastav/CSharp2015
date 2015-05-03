@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Calculator.CheckBook;
+using Calculator;
 using System.Linq;
 using System.Collections.ObjectModel;
 

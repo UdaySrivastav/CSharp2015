@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Calculator.CheckBook
+namespace Model
 {
     public class CbDb: DbContext
     {

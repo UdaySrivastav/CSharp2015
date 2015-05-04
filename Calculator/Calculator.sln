@@ -7,6 +7,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator", "Calculator\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorTests", "CalculatorTests\CalculatorTests.csproj", "{310215F3-9464-46D0-98B7-61906991DD17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{FD825099-0E87-4148-B8AD-6F8712D72E14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{DBAF9923-E558-47FC-8018-A65201DCB379}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{8348B8ED-F621-4B53-A3D3-319D2FFC9373}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{1BEB2BB9-C368-40AD-B6A0-3C82783543F3}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\WebApplication-WAWS-dev.json = PublishScripts\Configurations\WebApplication-WAWS-dev.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +36,19 @@ Global
 		{310215F3-9464-46D0-98B7-61906991DD17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{310215F3-9464-46D0-98B7-61906991DD17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{310215F3-9464-46D0-98B7-61906991DD17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD825099-0E87-4148-B8AD-6F8712D72E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD825099-0E87-4148-B8AD-6F8712D72E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD825099-0E87-4148-B8AD-6F8712D72E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD825099-0E87-4148-B8AD-6F8712D72E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBAF9923-E558-47FC-8018-A65201DCB379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBAF9923-E558-47FC-8018-A65201DCB379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBAF9923-E558-47FC-8018-A65201DCB379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBAF9923-E558-47FC-8018-A65201DCB379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1BEB2BB9-C368-40AD-B6A0-3C82783543F3} = {8348B8ED-F621-4B53-A3D3-319D2FFC9373}
 	EndGlobalSection
 EndGlobal

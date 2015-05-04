@@ -1,0 +1,58 @@
+﻿    <h2>Transaction</h2>
+    <form name="theForm">
+        <div class="form-horizontal">
+            <ul id="validationSummary"></ul>
+            <div class="form-group">
+                <label for="Date" class = "control-label col-md-2"> Date </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.Date" id="Date"  class="form-control"/>
+                    <div id="validation_for_Date"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="Payee" class = "control-label col-md-2"> Payee </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.Payee" id="Payee"  class="form-control"/>
+                    <div id="validation_for_Payee"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="AccountId" class = "control-label col-md-2"> Account </label>
+                <div class="col-md-10">
+                    <select ng-model="data.AccountId" id="AccountId"  class="form-control"
+                            ng-options="option.Id as option.Name for option in AccountId_options">
+                        <option value="">-- choose Account --</option>
+                    </select>
+                    <div id="validation_for_AccountId"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="Amount" class = "control-label col-md-2"> Amount </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.Amount" id="Amount"  class="form-control"/>
+                    <div id="validation_for_Amount"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="Tag" class = "control-label col-md-2"> Tag </label>
+                <div class="col-md-10">
+                    <input type="text" ng-model="data.Tag" id="Tag"  class="form-control"/>
+                    <div id="validation_for_Tag"></div>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Save" class="btn btn-default" ng-click="save()" />
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    <div>
+        <a href="#/Transaction">Back to List</a>
+    </div>

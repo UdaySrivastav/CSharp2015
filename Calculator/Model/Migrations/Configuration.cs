@@ -4,15 +4,16 @@ namespace Calculator.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Model;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Calculator.CheckBook.CbDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<CbDb>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Calculator.CheckBook.CbDb context)
+        protected override void Seed(CbDb context)
         {
             //  This method will be called after migrating to the latest version.
 

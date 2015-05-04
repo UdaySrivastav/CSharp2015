@@ -86,25 +86,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CalculatorVM.cs" />
-    <Compile Include="CheckBook\CbDb.cs" />
+    <Compile Include="CheckBook\CheckBookVM.cs" />
     <Compile Include="CheckBook\CheckBookWindow.xaml.cs">
       <DependentUpon>CheckBookWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CheckBook\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CheckBook\Transaction.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201504131311572_Start.cs" />
-    <Compile Include="Migrations\201504131311572_Start.Designer.cs">
-      <DependentUpon>201504131311572_Start.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -119,9 +113,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201504131311572_Start.resx">
-      <DependentUpon>201504131311572_Start.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -137,6 +128,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{fd825099-0e87-4148-b8ad-6f8712d72e14}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

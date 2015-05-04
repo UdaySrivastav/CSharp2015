@@ -1,0 +1,53 @@
+﻿    <h2>Transaction</h2>
+    <p>
+        <a href="#/Transaction/Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Account
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Payee
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Tag
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in data">
+            <td>
+                    <a ng-href="#Account/{{item.AccountId }}" >
+                    {{item.Account_Name}}
+                    </a>
+            </td>
+            <td>
+                {{ item.Date }}
+            </td>
+            <td>
+                {{ item.Payee }}
+            </td>
+            <td>
+                {{ item.Amount }}
+            </td>
+            <td>
+                {{ item.Tag }}
+            </td>
+            <td>
+                <a ng-href="#/Transaction/Edit/{{item.Id}}">Edit</a> |
+                <a ng-href="#/Transaction/{{item.Id}}">Details</a> |
+                <a ng-href="#/Transaction/Delete/{{item.Id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    
+    </table>

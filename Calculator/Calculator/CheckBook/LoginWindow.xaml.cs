@@ -21,6 +21,7 @@ namespace Calculator.CheckBook
     {
         public LoginWindow()
         {
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
             InitializeComponent();
         }
         TaskCompletionSource<string> tSource = new TaskCompletionSource<string>();
@@ -28,7 +29,7 @@ namespace Calculator.CheckBook
         public Task<string> Login()
         {
             Show();
-            var loginUrl = "https://www.facebook.com/dialog/oauth?client_id=1438926676407670&redirect_uri=https://www.facebook.com/connect/login_success.html&response_type=token";
+            var loginUrl = "https://www.facebook.com/dialog/oauth?client_id=1438926676407670&redirect_uri=https://www.facebook.com/connect/login_success.html&response_type=token&scope=email&display=popup";
             wb.Navigate(loginUrl);
             return tSource.Task;
         }

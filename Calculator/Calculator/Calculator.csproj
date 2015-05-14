@@ -86,7 +86,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CalculatorVM.cs" />
+    <Compile Include="CheckBook\Account.cs" />
     <Compile Include="CheckBook\CbDb.cs" />
+    <Compile Include="CheckBook\CheckbookVM.cs" />
     <Compile Include="CheckBook\CheckBookWindow.xaml.cs">
       <DependentUpon>CheckBookWindow.xaml</DependentUpon>
     </Compile>
